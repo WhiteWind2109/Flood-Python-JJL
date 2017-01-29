@@ -1,8 +1,8 @@
 # CUED Part IA Flood Warning System
 
-This is the Part IA Lent Term computing activity at the Department of
+_by Qiaochu Jiang, Junteng Li, and Dongcheng Jiang_
+
+This is the Part IA Lent Term computing activity  at the Department of
 Engineering, University of Cambridge.
 
-The activity is documented at
-http://cued-partia-flood-warning.readthedocs.io/. Fork this repository
-to start the activity.
+The activity is documented at [http://cued-partia-flood-warning.readthedocs.io/](http://cued-partia-flood-warning.readthedocs.io/)
