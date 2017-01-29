@@ -15,7 +15,7 @@ def run():
     #Retrieve name list and sort in alphabetical order
     result = []
     for station in stations_within_radius:
-        result += station.name
+        result.append(station.name)
     result.sort()
     #Output
     print(result)
@@ -24,5 +24,5 @@ def run():
 if __name__ == "__main__":
     print("*** Task 1C: CUED Part IA Flood Warning System ***")
 
-    # Run Task1A
+    # Run Task1C
     run()
