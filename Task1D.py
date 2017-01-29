@@ -13,7 +13,7 @@ def run():
     print(RiverWithStation[:10])
     
     #Get a dict of river->stations on this river
-    RiverByStation = geo.rivers_by_station(stations)
+    RiverByStation = geo.stations_by_river(stations)
     #Get required things
     RiverByStation['River Aire'].sort()
     print(RiverByStation['River Aire'])
