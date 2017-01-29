@@ -18,23 +18,26 @@ def stations_by_distance(stations, p):
     return ans
 
 def stations_within_radius(stations, centre, r):
+    # Create the list of stations to be returned
     ans = []
     for station in stations:
-        if (haversine(centre, station.coord) <= r):
-            ans += station
+        if (haversine(centre, station.coord) <= r): #if distance<radius then pick it
+            ans.append(station)
     return ans
 
 def rivers_with_station(stations):
+    # Create the list of rivers then change its type to set to get unique elements
     ans = []
     for station in stations:
-        ans.append(station.river)
+        ans.append(station.river) #Get all rivers' names
     return set(ans)
 
 def stations_by_river(stations):
+    # Create the dictionary of river->[station] to be returned
     ans = {}
     for station in stations:
         if (not station.river in ans):
-            ans[station.river] = []
+            ans[station.river] = [] #Create a new list for a not existing river
         ans[station.river].append(station.name)
     return ans
 
