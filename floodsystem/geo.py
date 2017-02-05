@@ -5,7 +5,15 @@ geographical data.
 
 from .utils import sorted_by_key
 # Taking well-tested function haversine to calculate distance
-from haversine import haversine
+
+# from haversine import haversine
+# if module not installed, install it with pip
+try:
+    from haversine import haversine
+except ImportError:
+    import pip
+    pip.main(['install', 'haversine'])
+    from haversine import haversine
 
 
 def stations_by_distance(stations, p):
