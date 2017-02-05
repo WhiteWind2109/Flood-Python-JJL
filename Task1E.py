@@ -6,4 +6,8 @@ def run():
     print(rivers_by_station_number(build_station_list(), 9))
 
 
-run()
+if __name__ == "__main__":
+    print("*** Task 1E: CUED Part IA Flood Warning System ***")
+
+    # Run Task1E
+    run()
