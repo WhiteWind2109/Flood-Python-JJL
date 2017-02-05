@@ -20,15 +20,15 @@ def fetch(url):
 
 def dump(data, filename):
     """Save JSON object to file"""
-    f = open(filename, 'w')
-    data = json.dump(data, f)
+    with open(filename, 'w') as f:
+        data = json.dump(data, f)
 
 
 def load(filename):
     """Load JSON object from file"""
-    f = open(filename, 'r')
-    data = json.load(f)
-    return data
+    with open(filename, 'r') as f:
+        data = json.load(f)
+        return data
 
 
 def fetch_station_data(use_cache=True):
