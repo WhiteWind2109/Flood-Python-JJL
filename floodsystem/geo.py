@@ -4,16 +4,21 @@ geographical data.
 """
 
 from .utils import sorted_by_key
-# Taking well-tested function haversine to calculate distance
 
-# from haversine import haversine
-# if module not installed, install it with pip
-try:
-    from haversine import haversine
-except ImportError:
-    import pip
-    pip.main(['install', 'haversine'])
-    from haversine import haversine
+
+# Extension: smart_import()
+# How it works: smart_import() automatically installs missing modules using
+# pip, which makes Anaconda no longer a requirement.
+from floodsystem.smart_import import smart_import
+# Usage: returned_module_object = smart_import('module')
+# Example:       np = smart_import('numpy')
+# Equivalent to: import numpy as np
+
+
+# Import well-tested function haversine to calculate distance
+# smart_import('haversine') is a module,
+# and smart_import('haversine').haversine is a function
+haversine = smart_import('haversine').haversine
 
 
 def stations_by_distance(stations, p):

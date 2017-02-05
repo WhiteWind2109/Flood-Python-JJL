@@ -8,23 +8,27 @@ import json
 
 import datetime
 
+# Extension: smart_import()
+# How it works: smart_import() automatically installs missing modules using
+# pip, which makes Anaconda no longer a requirement.
+from floodsystem.smart_import import smart_import
+# Usage: returned_module_object = smart_import('module')
+# Example:       np = smart_import('numpy')
+# Equivalent to: import numpy as np
+
 # import requests
-# if module not installed, install it with pip
-try:
-    import requests
-except ImportError:
-    import pip
-    pip.main(['install', 'requests'])
-    import requests
+requests = smart_import('requests')
 
 # import dateutil.parser
-# if module not installed, install it with pip
-try:
-    import dateutil.parser
-except ImportError:
-    import pip
-    pip.main(['install', 'python-dateutil'])
-    import dateutil.parser
+dateutil_parser = smart_import('dateutil.parser', module_pip_name='python-dateutil')
+# Equivalent to:  #####################
+# try:
+#     import dateutil.parser as dateutil_parser
+# except ImportError:
+#     import pip
+#     pip.main(['install', 'python-dateutil'])
+#     import dateutil.parser as dateutil_parser
+
 
 def fetch(url):
     """Fetch data from url and return fetched JSON object"""
@@ -141,7 +145,7 @@ def fetch_measure_levels(measure_id, dt):
     dates, levels = [], []
     for measure in data['items']:
         # Convert date-time string to a datetime object
-        d = dateutil.parser.parse(measure['dateTime'])
+        d = dateutil_parser.parse(measure['dateTime'])
 
         # Append data
         dates.append(d)

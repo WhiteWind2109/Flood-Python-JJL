@@ -23,10 +23,12 @@ def dynamic_import(module):
     return pkg
 
 
-def smart_import(module):
-    """Returns a module object.
+def smart_import(module, module_pip_name=None):
+    """smart_import(module, module_pip_name=None)
+    Returns a module object.
     Try dynamically importing a module (passed as string).
-    If no such module found, use pip to install it then import it.
+    If no such module found, use pip to install module_pip_name then import it.
+    If not specified, module_pip_name = module
     This makes our scripts independent of Anaconda. Only pip is required.
 
     Usage:
@@ -35,14 +37,20 @@ def smart_import(module):
     np = smart_import('numpy')
     Equivalent to:
     import numpy as np"""
+
+    # Default module_pip_name is module
+    if module_pip_name is None:
+        module_pip_name = module
+
     try:
         return dynamic_import(module)
     except ImportError:
         print("ImportError: No module named '%s'" % module)
         print("Trying to use pip to install '%s'" % module)
         import pip
-        pip.main(['install', module])
+        pip.main(['install', module_pip_name])
         try:
             return dynamic_import(module)
         except:
-            print("SmartImportError: Module named '%s' cannot be installed by pip." % module)
+            print(
+                "SmartImportError: Module named '%s' cannot be installed by pip." % module)
