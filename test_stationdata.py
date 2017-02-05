@@ -13,10 +13,10 @@ def test_build_station_list():
 def test_update_level():
     """Test update to latest water level"""
 
-     # Build list of stations
+    # Build list of stations
     stations = build_station_list()
     for station in stations:
-        assert station.latest_level ==  None
+        assert station.latest_level == None
 
     # Update latest level data for all stations
     update_water_levels(stations)
