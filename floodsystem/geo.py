@@ -82,7 +82,7 @@ def rivers_by_station_number(stations, N):
     stations_on_river = stations_by_river(stations)
     for river in stations_on_river:
         complete_list.append((river, len(stations_on_river[river])))
- 
+
     # Now sort it by numbers of stations in descending order
     complete_list = sorted_by_key(complete_list, 1, reverse=True)
     # The threshold value: the N-th greatest value
