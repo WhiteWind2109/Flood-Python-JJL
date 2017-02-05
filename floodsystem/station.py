@@ -56,4 +56,4 @@ def inconsistent_typical_range_stations(stations):
     The function uses MonitoringStation.typical_range_consistent."""
 
     # Use list comprehension
-    return [s.name for s in stations if not s.typical_range_consistent()]
+    return [s for s in stations if not s.typical_range_consistent()]

@@ -5,7 +5,7 @@ from floodsystem.stationdata import build_station_list
 def run():
     """Requirements for Task1F"""
 
-    print(sorted(inconsistent_typical_range_stations(build_station_list())))
+    print(sorted([station.name for station in inconsistent_typical_range_stations(build_station_list())]))
 
 
 if __name__ == "__main__":
