@@ -24,8 +24,7 @@ def run():
 
     RiverByStation['Thames'].sort()
     print(RiverByStation['Thames'])
-    
-    
+
 
 if __name__ == "__main__":
     print("*** Task 1D: CUED Part IA Flood Warning System ***")
