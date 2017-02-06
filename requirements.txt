@@ -1,0 +1,4 @@
+haversine==0.4.5
+pytest==3.0.6
+python-dateutil==2.6.0
+requests==2.13.0
