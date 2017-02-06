@@ -5,11 +5,26 @@ latest time history level data
 
 import os
 import json
-import requests
 
-import dateutil.parser
 import datetime
 
+# import requests
+# if module not installed, install it with pip
+try:
+    import requests
+except ImportError:
+    import pip
+    pip.main(['install', 'requests'])
+    import requests
+
+# import dateutil.parser
+# if module not installed, install it with pip
+try:
+    import dateutil.parser
+except ImportError:
+    import pip
+    pip.main(['install', 'python-dateutil'])
+    import dateutil.parser
 
 def fetch(url):
     """Fetch data from url and return fetched JSON object"""
