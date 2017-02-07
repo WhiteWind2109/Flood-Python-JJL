@@ -1,10 +1,11 @@
 """This module contains a collection of functions needed for Milestone2"""
 
 from floodsystem import stationdata
+from .utils import sorted_by_key
 
 
 def stations_level_over_threshold(stations, tol):
-    """Given a list of stations whose latest relative water levels are greater than a tolerance value
+    """Given a list of stations, this function is to get those with latest relative water levels greater than a tolerance value
         return a list of tuple, for each tuple the first element is the station's name and the second is its relative water level"""
 
     ans = []
@@ -26,3 +27,17 @@ def stations_level_over_threshold(stations, tol):
                 if r_level > tol:
                     ans.append((station.name, r_level))
     return ans
+
+
+def stations_highest_rel_level(stations, N):
+    """Given a list of stations and a number N
+        return a list of N stations with their relative levels in descending order"""
+
+    ans = []
+    for station in stations:
+        if isinstance(station.latest_level, float): #Still about the type problem (need modifications in station.py?)
+            r_level = station.relative_water_level()
+            if not r_level is None:
+                ans.append((station.name, station.relative_water_level()))
+    ans = sorted_by_key(ans, 1, reverse=True)
+    return ans[:N]
