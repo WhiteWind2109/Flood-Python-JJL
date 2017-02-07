@@ -62,7 +62,7 @@ class MonitoringStation:
         if not self.typical_range_consistent():
             return None
 
-        return (self.latest_level - self.typical_range[0])/(self.typical_range[1] - self.typical_range[0])
+        return (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
 
 
 def inconsistent_typical_range_stations(stations):
