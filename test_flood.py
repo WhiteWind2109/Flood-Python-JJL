@@ -12,3 +12,14 @@ def test_stations_level_over_threshold():
 
     present = flood.stations_level_over_threshold(stations, 0.8)
     assert present[0][1] > 0.8
+
+
+def test_stations_highest_rel_level():
+
+    # Build list of stations
+    stations = build_station_list()
+    update_water_levels(stations)
+
+    shortlist = flood.stations_highest_rel_level(stations, 10)
+    assert len(shortlist) == 10
+    assert shortlist[0][1] > shortlist[1][1]
