@@ -14,7 +14,7 @@ def run():
     shortlist = flood.stations_highest_rel_level(stations, N)
 
     for station in shortlist:
-        print("{} {}".format(station[0], station[1]))
+        print("{} {}".format(station.name, station.relative_water_level()))
 
 
 if __name__ == "__main__":
