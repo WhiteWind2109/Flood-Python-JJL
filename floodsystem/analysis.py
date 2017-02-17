@@ -1,8 +1,11 @@
 import numpy as np
-import matplotlib as plt
+from matplotlib.dates import date2num
 
 def polyfit(dates, levels, p):
-    x = plt.dates.date2num(dates)
+	# Get the number version of dates for analysis
+    x = date2num(dates)
+	
+	# Subtracting first term for fitting the curve
     p_coeff = np.polyfit(x-x[0], levels, p)
     poly = np.poly1d(p_coeff)
     return (poly, x[0])
