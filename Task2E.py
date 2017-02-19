@@ -17,7 +17,7 @@ def run():
     for station in shortlist:
         dt = 10
         for target in stations:
-            if target.name == station[0]:
+            if target.name == station.name:
                 dates, levels = datafetcher.fetch_measure_levels(target.measure_id,
                                                                  dt=datetime.timedelta(days=dt))
                 plot.plot_water_levels(target, dates, levels)
