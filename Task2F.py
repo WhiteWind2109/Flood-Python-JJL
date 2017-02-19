@@ -15,10 +15,15 @@ def run():
 
     # Setting the time interval to 2 days
     # Run curve fitting with degree of 4
-    dt = 2
+    # dt = 2
+    dt = 6
+
     for station in most_at_risk_stations:
         dates, levels = fetch_measure_levels(station.measure_id,
                                              dt=datetime.timedelta(days=dt))
+        # print('station.measure_id =', station.measure_id)
+        # print('len(dates) =', len(dates))
+        # print('len(levels) =', len(levels))
         if len(dates) < 1 or len(levels) < 1:
             continue
         plot_water_level_with_fit(station, dates, levels, 4)
