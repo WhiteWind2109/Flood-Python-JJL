@@ -30,9 +30,20 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p):
+    """plot_water_level_with_fit(station, dates, levels, p) --
+    Plots the water level data and the best-fit polynomial."""
+
     poly, d0 = polyfit(dates, levels, p)
     x = matplotlib.dates.date2num(dates)
-    plt.plot(x, levels, '.')
+
+    plt.plot(dates, levels, '.')
     x1 = np.linspace(x[0], x[-1], 30)
     plt.plot(x1, poly(x1 - d0))
+
+    plt.xlabel('Date/time since %s' % dates[0])
+    plt.ylabel('water level (m)')
+    plt.xticks(rotation=45)
+    plt.title("{}".format(station.name))
+    # Display plot
+    plt.tight_layout()  # This makes sure plot does not cut off date labels
     plt.show()
