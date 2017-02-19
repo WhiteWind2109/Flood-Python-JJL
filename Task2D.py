@@ -2,6 +2,7 @@ import datetime
 from floodsystem.stationdata import build_station_list
 from floodsystem.datafetcher import fetch_measure_levels
 
+
 def run():
 
     # Build list of stations
@@ -21,7 +22,7 @@ def run():
     # Print level history
     for date, level in zip(dates, levels):
         print(date, level)
-		
+
 
 if __name__ == "__main__":
     print("*** Task 2D: CUED Part IA Flood Warning System ***")

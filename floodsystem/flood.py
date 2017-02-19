@@ -35,9 +35,10 @@ def stations_highest_rel_level(stations, N):
 
     ans = []
     for station in stations:
-        if isinstance(station.latest_level, float): #Still about the type problem (need modifications in station.py?)
+        # Still about the type problem (need modifications in station.py?)
+        if isinstance(station.latest_level, float):
             r_level = station.relative_water_level()
-            if not r_level is None:
+            if r_level is not None:
                 ans.append((station, station.relative_water_level()))
     ans = sorted_by_key(ans, 1, reverse=True)
     return [station for station, level in ans[:N]]

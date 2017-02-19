@@ -4,6 +4,7 @@ from floodsystem import datafetcher
 from floodsystem import plot
 import datetime
 
+
 def run():
     """Requirements for Task2E"""
 
@@ -18,7 +19,7 @@ def run():
         for target in stations:
             if target.name == station[0]:
                 dates, levels = datafetcher.fetch_measure_levels(target.measure_id,
-                                                    dt=datetime.timedelta(days=dt))
+                                                                 dt=datetime.timedelta(days=dt))
                 plot.plot_water_levels(target, dates, levels)
                 break
 

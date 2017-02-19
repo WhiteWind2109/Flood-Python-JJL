@@ -26,6 +26,7 @@ except ImportError:
     pip.main(['install', 'python-dateutil'])
     import dateutil.parser
 
+
 def fetch(url):
     """Fetch data from url and return fetched JSON object"""
     r = requests.get(url)
