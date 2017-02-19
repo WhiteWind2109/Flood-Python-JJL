@@ -13,6 +13,9 @@ def test_stations_level_over_threshold():
 
     present = flood.stations_level_over_threshold(stations, 0.8)
     assert present[0][1] > 0.8
+    if len(present) > 1:
+        # The returned list should be in descending order
+        assert present[0][1] >= present[1][1]
 
 
 def test_stations_highest_rel_level():
