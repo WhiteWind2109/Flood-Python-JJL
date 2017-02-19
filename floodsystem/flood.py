@@ -5,8 +5,11 @@ from .utils import sorted_by_key
 
 
 def stations_level_over_threshold(stations, tol):
-    """Given a list of stations, this function is to get those with latest relative water levels greater than a tolerance value
-        return a list of tuple, for each tuple the first element is the station's name and the second is its relative water level"""
+    """Returns a list of tuples, where each tuple holds:
+    (1) a station at which the latest relative water level is over tol and
+    (2) the relative water level at the station. The returned list should
+    be sorted by the relative level in descending order.
+    Only stations with consistent typical low/high data are considered."""
 
     ans = []
     for station in stations:
@@ -26,7 +29,8 @@ def stations_level_over_threshold(stations, tol):
                 # Only valid data can be compared
                 if r_level > tol:
                     ans.append((station.name, r_level))
-    return ans
+    # Return list sorted by the relative level in descending order
+    return sorted(ans, key=lambda ans: ans[1], reverse=True)
 
 
 def stations_highest_rel_level(stations, N):
