@@ -14,8 +14,9 @@ def run():
 
     shortlist = flood.stations_highest_rel_level(stations, 5)
 
+    dt = 10
+
     for station in shortlist:
-        dt = 10
         for target in stations:
             if target.name == station.name:
                 dates, levels = datafetcher.fetch_measure_levels(target.measure_id,

@@ -19,6 +19,8 @@ def run():
     for station in most_at_risk_stations:
         dates, levels = fetch_measure_levels(station.measure_id,
                                              dt=datetime.timedelta(days=dt))
+        if len(dates) < 1 or len(levels) < 1:
+            continue
         plot_water_level_with_fit(station, dates, levels, 4)
 
 
