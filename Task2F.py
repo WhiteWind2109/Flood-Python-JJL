@@ -14,7 +14,7 @@ def run():
     most_at_risk_stations = stations_highest_rel_level(stations, 5)
 
     # Setting the time interval to 2 days
-    dt = 2
+    dt = 10
 
     # Run curve fitting with degree of 4
     p = 4
