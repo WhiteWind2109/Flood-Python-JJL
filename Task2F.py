@@ -11,12 +11,13 @@ def run():
     update_water_levels(stations)
 
     # Getting stations with highest water levels
-    most_at_risk_stations = stations_highest_rel_level(stations, 5)
+    most_at_risk_stations = stations_highest_rel_level(stations, 20)
 
     # Setting the time interval to 2 days
+    dt = 2
+
     # Run curve fitting with degree of 4
-    # dt = 2
-    dt = 6
+    p = 4
 
     for station in most_at_risk_stations:
         dates, levels = fetch_measure_levels(station.measure_id,
@@ -25,8 +26,9 @@ def run():
         # print('len(dates) =', len(dates))
         # print('len(levels) =', len(levels))
         if len(dates) < 1 or len(levels) < 1:
+            print('Faulty data:', station.name)
             continue
-        plot_water_level_with_fit(station, dates, levels, 4)
+        plot_water_level_with_fit(station, dates, levels, p)
 
 
 if __name__ == "__main__":
