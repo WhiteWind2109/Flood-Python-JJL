@@ -11,7 +11,7 @@ def run():
     update_water_levels(stations)
 
     # Getting stations with highest water levels
-    most_at_risk_stations = stations_highest_rel_level(stations, 20)
+    most_at_risk_stations = stations_highest_rel_level(stations, 5)
 
     # Setting the time interval to 2 days
     dt = 2

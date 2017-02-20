@@ -1,13 +1,14 @@
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem import flood
 import matplotlib
-import numpy as np
 from floodsystem.datafetcher import fetch_measure_levels
 import datetime
 from floodsystem.analysis import polyfit
 
 
 def predicted_relative_water_level(station, prediction):
+    """predicted_relative_water_level(station, prediction) -> float
+    Calculate the predicted relative water level."""
     return (prediction - station.typical_range[0]) / (station.typical_range[1] - station.typical_range[0])
 
 
@@ -24,7 +25,7 @@ def run():
     # Define N
     N = 20
 
-    # Setting the time interval to 3 days
+    # Setting the time interval to 2 days
     dt = 2
 
     # Run curve fitting with degree of 4
@@ -64,7 +65,7 @@ def run():
 
         if predicted_r_level > r_level:
             target_stations.append([station.name, rise])
-            print("{}:\n\tRelative water level: {}\n\tPredicted water level: {}\n\tRise: {}".format(
+            print("{}:\n\tRelative water level: {}\n\tPredicted relative water level: {}\n\tRise: {}".format(
                 station.name, r_level, predicted_r_level, rise))
 
     # now the stations at risk are marked
@@ -74,7 +75,6 @@ def run():
 
     for i, stations_risk in enumerate(target_stations):
         if stations_risk[0] in [towns for towns, count in target_towns]:
-            print('Exist')
             target_towns[i][1] += stations_risk[1]
         else:
             target_towns.append(stations_risk[:])
@@ -82,6 +82,8 @@ def run():
     # sort target_towns by risks in descending order
     target_towns.sort(key=lambda x: x[1], reverse=True)
 
+    print('-' * 70)
+    print('List of target towns and the estimated flood risk:')
     print(target_towns)
 
     print('-' * 70)
