@@ -50,6 +50,20 @@ class MonitoringStation:
                              float(e['stageScale']['typicalRangeHigh']))"""
         return self.typical_range[0] < self.typical_range[1]
 
+    def relative_water_level(self):
+        """This method returns the latest water level as a fraction of the typical range
+            if the data is unavailable or inconsistent return None"""
+
+        # The data is not available
+        if self.latest_level is None or self.typical_range is None:
+            return None
+
+        # The data is not consistent
+        if not self.typical_range_consistent():
+            return None
+
+        return (self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0])
+
 
 def inconsistent_typical_range_stations(stations):
     """Given a list of stations objects, returns a list of stations that have inconsistent data.

@@ -26,6 +26,7 @@ except ImportError:
     pip.main(['install', 'python-dateutil'])
     import dateutil.parser
 
+
 def fetch(url):
     """Fetch data from url and return fetched JSON object"""
     r = requests.get(url)
@@ -139,12 +140,36 @@ def fetch_measure_levels(measure_id, dt):
 
     # Extract dates and levels
     dates, levels = [], []
-    for measure in data['items']:
-        # Convert date-time string to a datetime object
-        d = dateutil.parser.parse(measure['dateTime'])
 
-        # Append data
-        dates.append(d)
-        levels.append(measure['value'])
+    # mark faulty station data
+    faulty_station = False
+
+    for measure in data['items']:
+
+        # # Convert date-time string to a datetime object
+        # d = dateutil.parser.parse(measure['dateTime'])
+
+        # # Append data
+        # dates.append(d)
+        # levels.append(measure['value'])
+
+        try:
+            # Convert date-time string to a datetime object
+            d = dateutil.parser.parse(measure['dateTime'])
+
+            # Append data
+            levels.append(measure['value'])
+            dates.append(d)
+        except:
+            faulty_station = True
+        finally:
+            # make sure the length of dates and levels match
+            while len(dates) > len(levels):
+                dates.pop()
+            while len(dates) < len(levels):
+                levels.pop()
+
+    if faulty_station:
+        print('Faulty station data found:\n\tmeasure_id =', measure_id)
 
     return dates, levels

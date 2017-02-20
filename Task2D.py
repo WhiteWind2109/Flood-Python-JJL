@@ -2,6 +2,7 @@ import datetime
 from floodsystem.stationdata import build_station_list
 from floodsystem.datafetcher import fetch_measure_levels
 
+
 def run():
 
     # Build list of stations
